@@ -1,7 +1,7 @@
 const express = require("express");
 
 const ctrl = require('../../controllers/auth');
-const { authenticate } = require('../../middleWares');
+const authenticate = require('../../middlewares/authenticate');
 
 const router = express.Router();
 
@@ -11,8 +11,6 @@ router.post('/login', ctrl.login);
 
 router.post('/logout', authenticate, ctrl.logout);
 
-router.patch('/avatars', authenticate, ctrl.updateAvatar);
-
-router.put('/', authenticate, )
+router.put('/', authenticate, ctrl.updateData);
 
 module.exports = router;
