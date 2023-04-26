@@ -1,25 +1,93 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "title": "Sample API",
-        "description": "API description in Markdown.",
-        "version": "1.0.0"
-    },
-    "host": "api.example.com",
-    "basePath": "/v1",
-    "schemes": "//host[:port][/path][parameters]",
-    "paths": {
-        "/api/auth": {
-            "post": {
-                "summary": "Returns a list of users.",
-                "description": "Optional extended description in Markdown.",
-                "produces": "application/json",
-                "responses": {
-                    "200": {
-                      "description": "OK"
-                    }
-                }
-            }
-        }
+  "swagger": "2.0",
+  "info": {
+    "title": "Goose-Track API",
+    "version": "1.0.0"
+  },
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "tasks",
+      "description": "Operations related to tasks"
     }
+  ],
+  "paths": {
+    "/tasks": {
+      "get": {
+        "tags": ["tasks"],
+        "summary": "Retrieve a list of tasks",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "A list of tasks",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Task": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the task",
+          "example": "Buy groceries",
+          "required": true
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the task",
+          "example": "toDo",
+          "enum": ["toDo", "inProgress", "done"],
+          "default": "toDo"
+        },
+        "priority": {
+          "type": "string",
+          "description": "The priority of the task",
+          "example": "low",
+          "enum": ["low", "medium", "high"],
+          "default": "low"
+        },
+        "date": {
+          "type": "object",
+          "description": "The start and end date of the task",
+          "properties": {
+            "start": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The start date of the task",
+              "example": "2023-04-26T00:00:00Z",
+              "required": true
+            },
+            "end": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The end date of the task",
+              "example": "2023-04-27T00:00:00Z",
+              "required": true
+            }
+          }
+        },
+        "owner": {
+          "type": "string",
+          "description": "The ID of the user who owns the task",
+          "example": "6166c9e6f50fb55161d82eb2",
+          "required": true
+        }
+      }
+    }
+  }
 }
