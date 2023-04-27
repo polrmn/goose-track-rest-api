@@ -27,7 +27,7 @@ const updateStatusSchema = Joi.object({
 });
 
 const updatePrioritySchema = Joi.object({
-  status: Joi.string().valid("low", "medium", "high").required(),
+  priority: Joi.string().valid("low", "medium", "high").required(),
 });
 
 module.exports = {
