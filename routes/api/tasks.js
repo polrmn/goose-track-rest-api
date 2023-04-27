@@ -1,5 +1,6 @@
 const express = require("express");
 const isValidId = require("../../middlewares/isValidId");
+const authenticate = require('../../middlewares/authenticate');
 const {
   getAll,
   getById,
@@ -10,20 +11,21 @@ const {
   deleteById,
 } = require("../../controllers/tasks");
 
+
 const router = express.Router();
 
-router.get("/", getAll);
+router.get("/", authenticate, getAll);
 
-router.get("/:id", isValidId, getById);
+router.get("/:id",authenticate, isValidId, getById);
 
-router.post("/", add);
+router.post("/", authenticate, add);
 
-router.put("/:id", isValidId, updateById);
+router.put("/:id", authenticate, isValidId, updateById);
 
-router.patch("/:id/status", isValidId, updateStatus);
+router.patch("/:id/status", authenticate, isValidId, updateStatus);
 
-router.patch("/:id/priority", isValidId, updatePriority);
+router.patch("/:id/priority", authenticate, isValidId, updatePriority);
 
-router.delete("/:id", isValidId, deleteById);
+router.delete("/:id", authenticate, isValidId, deleteById);
 
 module.exports = router;
