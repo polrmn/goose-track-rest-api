@@ -6,6 +6,8 @@ const swaggerDocument = require("./swagger.json");
 require("dotenv").config();
 const taskRouter = require("./routes/api/tasks");
 
+const authRouter = require('./routes/api/auth');
+
 const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -15,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// app.use('api/auth', authRouter)
+app.use('/api/auth', authRouter)
 // app.use('/api/reviews', reviewsRouter)
 app.use("/api/task", taskRouter);
 
