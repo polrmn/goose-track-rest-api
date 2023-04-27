@@ -55,11 +55,29 @@ const logout = async (req, res) => {
     res.status(204).json({ message: "Logout success" });
 };
 
-const updateData = (req, res, next) => {}
+const updateData = async (req, res) => {
+    const { birthday, phone, skype } = req.body;
+    const userId = req.user._id;
+
+    const user = await User.findByIdAndUpdate(
+        userId,
+        { birthday, phone, skype },
+        { new: true }
+    );
+    res.json({ user });
+};
+
+const current = async (req, res) => {
+    const { name, email, birthday, phone, skype } = req.user;
+    res.json({ name, email, birthday, phone, skype });
+};
+
+const updateAvatar = (req, res) => {}
 
 module.exports = {
     register: ctrlWrapper(register),
     login: ctrlWrapper(login),
     logout: ctrlWrapper(logout),
-    updateData: ctrlWrapper(updateData)
+    updateData: ctrlWrapper(updateData),
+    current: ctrlWrapper(current)
 }
