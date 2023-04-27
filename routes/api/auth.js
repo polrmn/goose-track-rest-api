@@ -13,4 +13,6 @@ router.post('/logout', authenticate, ctrl.logout);
 
 router.put('/', authenticate, ctrl.updateData);
 
+// router.patch('/avatar', authenticate, )
+
 module.exports = router;

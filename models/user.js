@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const handleMongooseError = require("../helpers/handleMongooseError");
 
-const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // <--------------/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+const emailRegexp = /^\S+@\S+\.\S+$/; // <--------------/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 const userSchema = new Schema({
     name: {
         type: String,
@@ -20,16 +20,20 @@ const userSchema = new Schema({
     },
     token: String,
     avatarURL: {
-        type: String
+        type: String,
+        default: ""
     },
     birthday: {
-        type: String
+        type: String,
+        default: ""
     },
     phone: {
-        type: String
+        type: String,
+        default: ""
     },
     skype: {
-        type: String
+        type: String,
+        default: ""
     }
 }, {
     versionKey: false,
