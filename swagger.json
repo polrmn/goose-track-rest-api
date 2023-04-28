@@ -41,11 +41,11 @@
           "200": {
             "description": "Successful operation",
             "content": {
-              "application/json": {
+              "application/json": { 
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/Task"
+                    "$ref": "#/components/schemas/Task"
                   }
                 }
               }
@@ -70,7 +70,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/Task"
+                "$ref": "#/components/schemas/Task"
               }
             }
           }
@@ -81,7 +81,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/Task"
+                  "$ref": "#/components/schemas/Task"
                 }
               }
             }
@@ -123,7 +123,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/Task"
+                  "$ref": "#/components/schemas/Task"
                 }
               }
             }
@@ -187,7 +187,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/Task"
+                "$ref": "#/components/schemas/Task"
               }
             }
           }
@@ -309,7 +309,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/Review"
+                    "$ref": "#/components/schemas/Review"
                   }
                 }
               }
@@ -320,63 +320,65 @@
     }
   },
   "components": {
-    "Task": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string",
-          "description": "The title of the task",
-          "example": "Buy groceries",
-          "required": true
-        },
-        "status": {
-          "type": "string",
-          "description": "The status of the task",
-          "example": "toDo",
-          "enum": ["toDo", "inProgress", "done"],
-          "default": "toDo"
-        },
-        "priority": {
-          "type": "string",
-          "description": "The priority of the task",
-          "example": "low",
-          "enum": ["low", "medium", "high"],
-          "default": "low"
-        },
-        "date": {
-          "type": "object",
-          "description": "The start and end date of the task",
-          "properties": {
-            "start": {
-              "type": "string",
-              "format": "date-time",
-              "description": "The start date of the task",
-              "example": "2023-04-26T00:00:00Z",
-              "required": true
-            },
-            "end": {
-              "type": "string",
-              "format": "date-time",
-              "description": "The end date of the task",
-              "example": "2023-04-27T00:00:00Z",
-              "required": true
+    "schemas": {
+      "Task": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the task",
+            "example": "Buy groceries",
+            "required": true
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the task",
+            "example": "toDo",
+            "enum": ["toDo", "inProgress", "done"],
+            "default": "toDo"
+          },
+          "priority": {
+            "type": "string",
+            "description": "The priority of the task",
+            "example": "low",
+            "enum": ["low", "medium", "high"],
+            "default": "low"
+          },
+          "date": {
+            "type": "object",
+            "description": "The start and end date of the task",
+            "properties": {
+              "start": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The start date of the task",
+                "example": "2023-04-26T00:00:00Z",
+                "required": true
+              },
+              "end": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The end date of the task",
+                "example": "2023-04-27T00:00:00Z",
+                "required": true
+              }
             }
+          },
+          "owner": {
+            "type": "string",
+            "description": "The ID of the user who owns the task",
+            "example": "6166c9e6f50fb55161d82eb2"
           }
-        },
-        "owner": {
-          "type": "string",
-          "description": "The ID of the user who owns the task",
-          "example": "6166c9e6f50fb55161d82eb2"
         }
-      }
-    },
-    "Review": {
-      "type":"object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "The name of the reviewer",
-          "example": "User Name"
+      },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the reviewer",
+            "example": "User Name"
+          }
         }
       }
     },
