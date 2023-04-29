@@ -781,6 +781,11 @@
             "type": "string",
             "description": "The name of the reviewer",
             "example": "User Name"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Reviews comment",
+            "example": "It's really help me to organize my time"
           }
         }
       }
