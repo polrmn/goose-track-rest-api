@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "Goose Track",
     "description": "API for Goose Track application"
   },
@@ -705,6 +705,11 @@
             "type": "string",
             "description": "Username in Skype",
             "example": "Sorin Markov",
+            "default": ""
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User picture",
             "default": ""
           }
         }
