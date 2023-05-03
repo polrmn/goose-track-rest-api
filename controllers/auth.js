@@ -56,12 +56,12 @@ const logout = async (req, res) => {
 };
 
 const updateData = async (req, res) => {
-  const { birthday, phone, skype } = req.body;
+  const { name, email, birthday, phone, skype } = req.body;
   const userId = req.user._id;
 
   const user = await User.findByIdAndUpdate(
     userId,
-    { birthday, phone, skype },
+    { name, email, birthday, phone, skype },
     { new: true }
   );
   res.json({ user });
