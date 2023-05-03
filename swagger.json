@@ -584,6 +584,16 @@
       "UpdateUser": {
         "type": "object",
         "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "Elesh Norn"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "eleshnorn@phyrexia.com"
+          },
           "birthday": {
             "type": "Date",
             "description": "User's birthday",
