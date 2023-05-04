@@ -1,6 +1,7 @@
 const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("../utils/cloudinary");
+const HttpError = require("../helpers/HttpError");
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
@@ -18,6 +19,17 @@ const storage = new CloudinaryStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+function uploadFile(req, res, next) {
+  const upload = multer({ storage: storage }).single("avatar");
 
-module.exports = upload;
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      return next(HttpError(err.http_code, err.message));
+    } else if (err) {
+      return next(HttpError(err.http_code, err.message));
+    }
+    next();
+  });
+}
+
+module.exports = uploadFile;

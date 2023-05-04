@@ -20,7 +20,7 @@ router.get("/current", authenticate, ctrl.current);
 router.patch(
   "/avatar",
   authenticate,
-  upload.single("avatar"),
+  upload,
   ctrl.updateAvatar
 );
 

@@ -30,7 +30,13 @@ const add = async (req, res) => {
     throw HttpError(400, error.message);
   }
   const result = await Task.create({ ...req.body, owner });
-  res.status(201).json(result);
+  res.status(201).json({
+    title: result.title,
+    status: result.status,
+    priority: result.priority,
+    date: result.date,
+    _id: result._id
+  });
 };
 
 const deleteById = async (req, res) => {
