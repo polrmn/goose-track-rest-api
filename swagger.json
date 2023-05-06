@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.3",
+    "version": "1.0.5",
     "title": "Goose Track",
     "description": "API for Goose Track application"
   },
@@ -376,10 +376,10 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied or invalid request body"
+            "description": "Invalid request body"
           },
           "404": {
-            "description": "Task not found"
+            "description": " Task's ID is invalid or not found"
           },
           "500": {
             "description": "Internal server error"
